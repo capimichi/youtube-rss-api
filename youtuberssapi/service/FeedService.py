@@ -64,20 +64,27 @@ class FeedService:
 
         items = []
         for video_id in video_ids:
-            video_data = ytdl.extract_info(video_id, download=True, process=False)
+            # video_data = ytdl.extract_info(video_id, download=True, process=False)
+            video_url = 'https://www.youtube.com/watch?v=' + video_id
+            video_res = requests.get(video_url)
+            video_content = video_res.content.decode('utf-8')
+            bs = BeautifulSoup(video_content, 'html.parser')
+
+            title = bs.find('meta', property='og:title')['content']
+            pub_date = bs.find('meta', itemprop='datePublished')['content']
 
             item = Item(
-                title=video_data['title'],
-                description=video_data['description'],
-                pubDate=video_data['upload_date'],
+                title=title,
+                description="",
+                pubDate=pub_date,
                 episodeType='full',
                 author='la7',
                 subtitle=None,
-                summary=video_data['description'],
-                encoded='<p>' + video_data['description'] + '</p>',
-                duration=video_data['duration'],
-                guid=video_data['id'],
-                enclosure=self.base_url + '/video/' + video_data['id']
+                summary="",
+                encoded='<p>' + "" + '</p>',
+                duration="",
+                guid=video_id,
+                enclosure=self.base_url + '/video/' + video_id
             )
             items.append(item)
 
