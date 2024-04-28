@@ -3,7 +3,16 @@ import xml.etree.cElementTree as ET
 class RssHelper:
 
     def rss_to_xml(self, rss):
-        root = ET.Element("rss")
+
+        namespaces = {
+            "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
+            "xmlns:googleplay": "http://www.google.com/schemas/play-podcasts/1.0",
+            "xmlns:atom": "http://www.w3.org/2005/Atom",
+            "xmlns:media": "http://search.yahoo.com/mrss/",
+            "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
+        }
+        root = ET.Element("rss", attrib=namespaces, version="2.0")
+        # rest of the code
 
         channel = ET.SubElement(root, "channel")
         title = ET.SubElement(channel, "title")
