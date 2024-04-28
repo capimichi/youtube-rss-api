@@ -11,6 +11,8 @@ from youtuberssapi.model.Item import Item
 from youtuberssapi.model.Owner import Owner
 from youtuberssapi.model.Rss import Rss
 
+import re
+
 from bs4 import BeautifulSoup
 
 
@@ -49,31 +51,16 @@ class FeedService:
         # get og:image
         image_url = bs.find('meta', property='og:image')['content']
 
+        # regex to get watch?v=(.*?)\" from the page content
+        video_ids = re.findall(r'watch\?v=(.*?)\"', page_content)
+
         title = info_dict['title']
-
-
-        video_ids = []
-        # for entry in info_dict['entries']:
-        #     if("id" in entry):
-        #         video_ids.append(entry['id'])
 
         # slice the list of video ids
         start = (page - 1) * per_page
-        if(start <= 0):
-            start = 1
         end = start + per_page
 
-        # run this command to get the video ids
-        # youtube-dl --playlist-end 5 --dump-json "https://www.youtube.com/@breakingitaly/videos"
-        sys_command = f'youtube-dl --playlist-start {start} --playlist-end {end} --dump-json "{youtube_url}"'
-        json_data = os.popen(sys_command).read()
-        for json_item in json_data.split('\n'):
-            json_item_data = json.loads(json_item)
-            if "id" in json_item_data:
-                video_ids.append(json_item_data['id'])
-
-
-        # video_ids = video_ids[start:end]
+        video_ids = video_ids[start:end]
 
         items = []
         for video_id in video_ids:
