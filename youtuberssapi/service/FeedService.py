@@ -48,8 +48,12 @@ class FeedService:
 
         title = info_dict['title']
 
-        # video_ids = [video['id'] for video in info_dict['entries']]
-        video_ids = ["8yv2qfQhW68"]
+
+        video_ids = []
+        for entry in info_dict['entries']:
+            if("id" in entry):
+                video_ids.append(entry['id'])
+        # video_ids = ["8yv2qfQhW68"]
 
         # slice the list of video ids
         start = (page - 1) * per_page
