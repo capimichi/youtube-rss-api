@@ -1,3 +1,6 @@
+import json
+import os
+
 import requests
 import youtube_dl
 
@@ -35,7 +38,7 @@ class FeedService:
             # 'ignoreerrors': True,
             # 'quiet': True,
             # 'no_warnings': True,
-            'dump_single_json': True,
+            'dump_single_json': True
         })
         info_dict = ytdl.extract_info(youtube_url, download=False, process=False)
 
@@ -50,15 +53,27 @@ class FeedService:
 
 
         video_ids = []
-        for entry in info_dict['entries']:
-            if("id" in entry):
-                video_ids.append(entry['id'])
-        # video_ids = ["8yv2qfQhW68"]
+        # for entry in info_dict['entries']:
+        #     if("id" in entry):
+        #         video_ids.append(entry['id'])
 
         # slice the list of video ids
         start = (page - 1) * per_page
+        if(start <= 0):
+            start = 1
         end = start + per_page
-        video_ids = video_ids[start:end]
+
+        # run this command to get the video ids
+        # youtube-dl --playlist-end 5 --dump-json "https://www.youtube.com/@breakingitaly/videos"
+        sys_command = f'youtube-dl --playlist-start {start} --playlist-end {end} --dump-json "{youtube_url}"'
+        json_data = os.popen(sys_command).read()
+        for json_item in json_data.split('\n'):
+            json_item_data = json.loads(json_item)
+            if "id" in json_item_data:
+                video_ids.append(json_item_data['id'])
+
+
+        # video_ids = video_ids[start:end]
 
         items = []
         for video_id in video_ids:
