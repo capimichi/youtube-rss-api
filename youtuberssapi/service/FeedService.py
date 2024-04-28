@@ -82,7 +82,7 @@ class FeedService:
                 subtitle=None,
                 summary="",
                 encoded='<p>' + "" + '</p>',
-                duration="",
+                duration=5,
                 guid=video_id,
                 enclosure=self.base_url + '/video/' + video_id
             )
