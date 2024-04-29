@@ -6,20 +6,22 @@ from youtuberssapi.container.DefaultContainer import DefaultContainer
 from youtuberssapi.service.FeedService import FeedService
 import youtube_dl
 from fastapi.responses import Response
+from fastapi.staticfiles import StaticFiles
 
 from youtuberssapi.service.VideoService import VideoService
 
 default_container = DefaultContainer()
 app = FastAPI()
 
+app.mount("/", StaticFiles(directory="docusaurus/build", html=True), name="docusaurus")
 
-@app.get("/feed")
+@app.get("/feed",tags=["feed"])
 async def get_feed(url: str, page: int = 1, per_page: int = 10):
     feed_service: FeedService = default_container.get('FeedService')
     feed_xml_data = feed_service.getFeed(url, page=page, per_page=per_page)
     return Response(content=feed_xml_data, media_type="application/xml")
 
-@app.get("/video/{id}")
+@app.get("/video/{id}",tags=["video"])
 async def get_video(id: str):
     video_service: VideoService = default_container.get('VideoService')
     audio_content = video_service.getVideoMp3Content(id)
