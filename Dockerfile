@@ -24,7 +24,7 @@ RUN apt-get install -y curl
 RUN apt install nodejs npm -y
 
 # Install yarn
-RUN npm install -g yarn
+# RUN npm install -g yarn
 
 # Change to docusaurus directory, install dependencies and build
 # RUN cd docusaurus && yarn install && yarn build
