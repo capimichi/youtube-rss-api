@@ -35,4 +35,4 @@ RUN apk add curl
 EXPOSE 80
 
 # Run the command to start uWSGI
-CMD ["sh", "-c", "uvicorn main:app --host $HOST --port $PORT"]
+CMD ["cd /app &&", "sh", "-c", "uvicorn main:app --host $HOST --port $PORT"]
