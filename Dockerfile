@@ -16,6 +16,8 @@ RUN apk update
 
 RUN apk add ffmpeg
 
+RUN apk add git
+
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
