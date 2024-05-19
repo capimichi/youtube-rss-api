@@ -12,15 +12,15 @@ WORKDIR /app
 # Add the current directory contents into the container at /app
 ADD requirements.txt /app/requirements.txt
 
-RUN apt-get update
+RUN apk update
 
-RUN apt-get install -y ffmpeg
+RUN apk install -y ffmpeg
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Install curl and Node.js
-RUN apt-get install -y curl
+RUN apk install -y curl
 # RUN apt install nodejs npm -y
 
 # Install yarn
