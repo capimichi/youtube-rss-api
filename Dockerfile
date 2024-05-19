@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11
+FROM python:3.11-alpine
 
 # Define environment variables
 ENV HOST 0.0.0.0
