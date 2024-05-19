@@ -14,13 +14,13 @@ ADD requirements.txt /app/requirements.txt
 
 RUN apk update
 
-RUN apk install -y ffmpeg
+RUN apk install ffmpeg
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Install curl and Node.js
-RUN apk install -y curl
+RUN apk install curl
 # RUN apt install nodejs npm -y
 
 # Install yarn
