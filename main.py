@@ -16,9 +16,9 @@ app = FastAPI()
 app.mount("/", StaticFiles(directory="docusaurus/build", html=True), name="docusaurus")
 
 @app.get("/feed",tags=["feed"])
-async def get_feed(url: str, page: int = 1, per_page: int = 10):
+async def get_feed(channel_id: str, page: int = 1, per_page: int = 10):
     feed_service: FeedService = default_container.get('FeedService')
-    feed_xml_data = feed_service.getFeed(url, page=page, per_page=per_page)
+    feed_xml_data = feed_service.getFeed(channel_id, page=page, per_page=per_page)
     return Response(content=feed_xml_data, media_type="application/xml")
 
 @app.get("/video/{id}",tags=["video"])
