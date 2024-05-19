@@ -10,7 +10,7 @@ ENV BASE_URL http://{HOST}:{PORT}
 WORKDIR /app
 
 # Add the current directory contents into the container at /app
-ADD . /app
+ADD requirements.txt /app/requirements.txt
 
 RUN apt-get update
 
