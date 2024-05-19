@@ -16,7 +16,8 @@ class DefaultContainer:
 
         self.set('FeedService', FeedService(
             rss_helper=self.get('RssHelper'),
-            base_url=self.get_base_url()
+            base_url=self.get_base_url(),
+            yt_api_key=self.get_yt_api_key()
         ))
 
         self.set('VideoService', VideoService())
@@ -43,3 +44,6 @@ class DefaultContainer:
 
     def get_base_url(self):
         return environ.get('BASE_URL', 'http://' + self.get_host() + ':' + str(self.get_port()))
+
+    def get_yt_api_key(self):
+        return environ.get('YT_API_KEY', None)
