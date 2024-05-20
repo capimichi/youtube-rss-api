@@ -40,13 +40,11 @@ class FeedService:
                 ):
 
 
-        video_ids = self.get_video_ids(channel_id, page, per_page)
-
-        items = []
+        videos = self.get_videos(channel_id, page, per_page)
 
         channel_data = self.get_channel_data(channel_id)
 
-        podcast_content = self.rss_helper.get_podcast_content(channel_id, channel_data)
+        podcast_content = self.rss_helper.get_podcast_content(channel_id, channel_data, videos)
 
         return podcast_content
 
@@ -54,19 +52,13 @@ class FeedService:
         self.base_url = base_url
         return self.base_url
 
-    def get_video_ids(self, channel_id, page, per_page):
+    def get_videos(self, channel_id, page, per_page):
         api_key = self.yt_api_key
         url = f'https://www.googleapis.com/youtube/v3/search?key={api_key}&channelId={channel_id}&part=snippet,id&order=date&maxResults=20'
         response = requests.get(url)
         json_data = json.loads(response.text)
 
-        video_ids = []
-        for item in json_data['items']:
-            id_data = item['id']
-            if(id_data['kind'] == 'youtube#video'):
-                video_ids.append(item['id']['videoId'])
-
-        return video_ids
+        return json_data['items']
 
     def get_channel_data(self, channel_id):
         api_key = self.yt_api_key
