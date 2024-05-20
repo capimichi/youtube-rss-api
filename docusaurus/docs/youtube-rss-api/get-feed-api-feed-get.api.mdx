@@ -1,0 +1,54 @@
+---
+id: get-feed-api-feed-get
+title: "Get Feed"
+description: "Get Feed"
+sidebar_label: "Get Feed"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVE1v2zAM/SuGThtgNG6wU27F1nYFNizosl2CIFBs2lan2KpEFwsM//eRkhvH+Sg2YLnEkh7fo8hHtQJl4cRsKe4AMrGKRW3ASlR19ZCJmSgA1zmdrKVR4YN2RCyMtHILCJZjW1HRgtBpKasK9FplBFEV7Tw3YHe0sPDcKEsKM7QNxMKlJWylmLUCd4ZDHVpVFYREhZo3PgauiNLoungvYWQBl8lzqd05dlUhFGAJm0EuG41idj1IzZlzJAJ2/f+EkgMlsFGvtmI6Z+rKgWOCaZLwXwYutcpwAwj/vUlTcC5vdPTYg4k6rUmlQoZLY7RKfb8mT45j2iGpjn6x+DCdnhL/lFplPiy6tba2/8AqjGWPoAp5Z4BSaf5SCFt3CtB1OjqV1e5b7l0zbj3X/6iK3Yry7/ektXJ34I8vdUiQ4sTWFW9Z6SuV0Bf9lewy1BcjWvBpN2jXmydIcWSApb9XkO5xq4FmKG+o7uVrfArlOyf2Cvm8WMxPCENvx029B4z8GFNagGXdD7AfVyxpMaEpnuQBoaq89pXoVe6kw5v5A5280FQHwuTq+irh5E3tcCu9D/oROdAaJbEvLcJvnBgtle9QY71FQh5LMpiiwLx/ckpi59223UgHP6zuOt4OU8dGyZSTG30wd0eSe+uKd499h95HIj6fyi/YHT9VL1I3DPQePBELAf178FfQ4fkY4CteWMV4uhMbuwSZkcn5giHuhobd4EHUyRwyy76197cL8sEfNvvvIQ==
+sidebar_class_name: "get api-method"
+info_path: docs/youtube-rss-api/fastapi
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Get Feed</h1>
+
+<MethodEndpoint method={"get"} path={"/api/feed"}></MethodEndpoint>
+
+
+
+Get Feed
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"channel_id","in":"query","required":true,"schema":{"type":"string","title":"Channel Id"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"page","in":"query","required":false,"schema":{"type":"integer","default":1,"title":"Page"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"per_page","in":"query","required":false,"schema":{"type":"integer","default":10,"title":"Per Page"}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Successful Response
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"422"} value={"422"}><div>
+
+Validation Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>detail</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>loc</strong><span className={"openapi-schema__name"}> object[]</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><div><span className={"badge badge--info"}>anyOf</span><SchemaTabs><TabItem label={"MOD1"} value={"0-item-properties"}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+string
+
+</div></TabItem><TabItem label={"MOD2"} value={"1-item-properties"}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+integer
+
+</div></TabItem></SchemaTabs></div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"msg"} required={true} schemaName={"Message (string)"} qualifierMessage={undefined} schema={{"type":"string","title":"Message"}}></SchemaItem><SchemaItem collapsible={false} name={"type"} required={true} schemaName={"Error Type (string)"} qualifierMessage={undefined} schema={{"type":"string","title":"Error Type"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        0\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      
