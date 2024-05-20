@@ -1,4 +1,5 @@
 import xml.etree.cElementTree as ET
+from datetime import datetime
 
 class RssHelper:
 
@@ -88,6 +89,13 @@ class RssHelper:
             title = video['snippet']['title']
             title = title.replace("&", "&amp;")
             thumbnail = video['snippet']['thumbnails']['medium']['url']
+            pub_date = video['snippet']['publishedAt']
+            pub_date_parse = datetime.strptime(pub_date, "%Y-%m-%dT%H:%M:%SZ")
+
+            # Formatta l'oggetto datetime nel formato desiderato
+            pub_date_final = pub_date_parse.strftime("%a, %d %b %Y %H:%M:%S %z")
+
+            media_url = "http://dev1.michelecapicchioni.com:8231/api/video/" + video['id']['videoId']
             item = f"""<item>
         <guid isPermaLink="false">1988158226</guid>
         <title>{title}</title>
@@ -106,12 +114,11 @@ class RssHelper:
         <category>Society &amp; Culture</category>
         <itunes:category text="Society &amp; Culture"/>
         <itunes:keywords>News Society &amp; Culture</itunes:keywords>
-        <enclosure url="https://limone.iltrovatore.it/audio.mp3?source_r=itunes&amp;fn=podcast-otto-e-mezzo-474513.mp3&amp;mp3l=1979&amp;mp3pid=otto-e-mezzo" type="audio/mpeg"/>
-        <media:content url="https://limone.iltrovatore.it/audio.mp3?source_r=itunes&amp;fn=podcast-otto-e-mezzo-474513.mp3&amp;mp3l=1979&amp;mp3pid=otto-e-mezzo" type="audio/mpeg">
-        <media:player url="https://www.la7.it/embed/podcas/474513"/>
+        <enclosure url="{media_url}" type="audio/mpeg"/>
+        <media:content url="{media_url}" type="audio/mpeg">
+        <media:player url="{media_url}"/>
         </media:content>
-        <itunes:duration>1979</itunes:duration>
-        <pubDate>Fri, 03 Mar 2023 20:33:30 +0100</pubDate>
+        <pubDate>{pub_date_final}</pubDate>
         <itunes:explicit>no</itunes:explicit>
         </item>"""
             items += item
