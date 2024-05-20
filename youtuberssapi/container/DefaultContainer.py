@@ -40,7 +40,7 @@ class DefaultContainer:
         return environ.get('HOST', '0.0.0.0')
 
     def get_port(self):
-        return environ.get('PORT', 8231)
+        return int(environ.get('PORT', 8231))
 
     def get_base_url(self):
         return environ.get('BASE_URL', 'http://' + self.get_host() + ':' + str(self.get_port()))
