@@ -9,6 +9,7 @@ from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from fastapi import APIRouter
+from fastapi.staticfiles import StaticFiles
 
 from youtuberssapi.service.VideoService import VideoService
 
@@ -17,9 +18,7 @@ app = FastAPI(docs_url="/swagger", servers=[{"url": default_container.get_base_u
 router = APIRouter()
 
 
-@app.get("/", include_in_schema=False)
-async def root():
-    return RedirectResponse(url='/swagger')
+app.mount("/", StaticFiles(directory="docusaurus/build"), name="static")
 
 @router.get("/feed",tags=["Feed"])
 async def get_feed(channel_id: str, page: int = 1, per_page: int = 10):
