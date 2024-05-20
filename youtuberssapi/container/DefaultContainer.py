@@ -12,7 +12,9 @@ class DefaultContainer:
 
     def __init__(self):
 
-        self.set('RssHelper', RssHelper())
+        self.set('RssHelper', RssHelper(
+            base_url=self.get_base_url()
+        ))
 
         self.set('FeedService', FeedService(
             rss_helper=self.get('RssHelper'),
