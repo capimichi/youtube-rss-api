@@ -68,7 +68,7 @@ class FeedService:
 <itunes:name>la7</itunes:name>
 <itunes:email>podcast@la7.it</itunes:email>
 </itunes:owner>
-<itunes:category text="Society & Culture"/>
+<itunes:category text="Society &nbsp; Culture"/>
 <itunes:category text="News"/>
 <itunes:explicit>no</itunes:explicit>
 <item>
