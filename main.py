@@ -19,7 +19,7 @@ app = FastAPI(docs_url="/swagger", servers=[{"url": default_container.get_base_u
 router = APIRouter()
 
 
-app.mount("/", StaticFiles(directory="./docusaurus/build", html=True), name="static")
+app.mount("/docs/", StaticFiles(directory="./docusaurus/build", html=True), name="static")
 
 @router.get("/feed",tags=["Feed"])
 async def get_feed(channel_id: str, page: int = 1, per_page: int = 10):
