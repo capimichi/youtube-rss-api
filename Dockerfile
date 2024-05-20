@@ -19,7 +19,6 @@ RUN apk add ffmpeg git curl
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-
 EXPOSE 8231
 
 # Run the command to start uWSGI
