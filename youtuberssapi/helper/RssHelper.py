@@ -1,5 +1,4 @@
 import xml.etree.cElementTree as ET
-import cgi
 
 class RssHelper:
 
@@ -87,7 +86,7 @@ class RssHelper:
         items = ""
         for video in videos:
             title = video['snippet']['title']
-            title = cgi.escape(title)
+            title = title.replace("&", "&amp;")
             thumbnail = video['snippet']['thumbnails']['medium']['url']
             item = f"""<item>
         <guid isPermaLink="false">1988158226</guid>
