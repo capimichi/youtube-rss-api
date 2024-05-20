@@ -80,3 +80,62 @@ class RssHelper:
             enclosure.set("type", "audio/mpeg")
 
         return ET.tostring(root)
+
+    def get_podcast_content(self, channel_id):
+        podcast_content = f"""<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:spotify="https://www.spotify.com/ns/rss" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+        <channel>
+        <title>Otto e mezzo </title>
+        <link>https://www.la7.it/otto-e-mezzo</link>
+        <language>it</language>
+        <copyright>© la7</copyright>
+        <itunes:subtitle/>
+        <itunes:author>la7</itunes:author>
+        <itunes:summary>
+        <![CDATA[ Ascolta il racconto dell'attualit&#xE0; con Lilli Gruber e i suoi ospiti. Tutti i giorni le puntate integrali di Otto e Mezzo. ]]>
+        </itunes:summary>
+        <description>
+        <![CDATA[ Ascolta il racconto dell'attualit&#xE0; con Lilli Gruber e i suoi ospiti. Tutti i giorni le puntate integrali di Otto e Mezzo. ]]>
+        </description>
+        <itunes:image href="https://www.la7.it/sites/default/files/8emezzo_podcast_cover_0.jpg"/>
+        <image>
+        <url>https://www.la7.it/sites/default/files/8emezzo_podcast_cover_0.jpg</url>
+        <title>Otto e mezzo </title>
+        <link>https://www.la7.it/otto-e-mezzo</link>
+        </image>
+        <itunes:owner>
+        <itunes:name>la7</itunes:name>
+        <itunes:email>podcast@la7.it</itunes:email>
+        </itunes:owner>
+        <itunes:category text="Society &amp; Culture"/>
+        <itunes:category text="News"/>
+        <itunes:explicit>no</itunes:explicit>
+        <item>
+        <guid isPermaLink="false">1988158226</guid>
+        <title>Otto e Mezzo</title>
+        <itunes:title>Otto e Mezzo</itunes:title>
+        <description>
+        <![CDATA[ Ospiti di Lilli Gruber: Franco Bernab#xE8;, Massimo Giannini, Lucio Caracciolo, Nadia Urbinati ]]>
+        </description>
+        <itunes:summary>
+        <![CDATA[ Ospiti di Lilli Gruber: Franco Bernab#xE8;, Massimo Giannini, Lucio Caracciolo, Nadia Urbinati ]]>
+        </itunes:summary>
+        <itunes:author>la7</itunes:author>
+        <itunes:image href="https://www.la7.it/sites/default/files/8emezzo_podcast_cover_0.jpg"/>
+        <media:content url="https://www.la7.it/sites/default/files/8emezzo_podcast_cover_0.jpg" type="image/jpeg"/>
+        <category>News</category>
+        <itunes:category text="News"/>
+        <category>Society  Culture</category>
+        <itunes:category text="Society Culture"/>
+        <itunes:keywords>News Society  Culture</itunes:keywords>
+        <enclosure url="https://limone.iltrovatore.it/audio.mp3?source_r=itunes&amp;fn=podcast-otto-e-mezzo-474513.mp3&amp;mp3l=1979&amp;mp3pid=otto-e-mezzo" length="1979" type="audio/mpeg"/>
+        <media:content url="https://limone.iltrovatore.it/audio.mp3?source_r=itunes&amp;fn=podcast-otto-e-mezzo-474513.mp3&amp;mp3l=1979&amp;mp3pid=otto-e-mezzo" type="audio/mpeg">
+        <media:player url="https://www.la7.it/embed/podcas/474513"/>
+        </media:content>
+        <itunes:duration>1979</itunes:duration>
+        <pubDate>Fri, 03 Mar 2023 20:33:30 +0100</pubDate>
+        <itunes:explicit>no</itunes:explicit>
+        </item>
+        </channel>
+        </rss>"""
+
+        return podcast_content
