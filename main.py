@@ -15,15 +15,13 @@ from youtuberssapi.service.VideoService import VideoService
 
 default_container = DefaultContainer()
 
-app = FastAPI(docs_url="/swagger", servers=[{"url": default_container.get_base_url()}])
+app = FastAPI(docs_url="/docs", servers=[{"url": default_container.get_base_url()}])
 router = APIRouter()
 
 # redirect / to /docs/
 @app.get("/", tags=["Root"], include_in_schema=False)
 async def root():
-    return RedirectResponse(url="/docs/")
-
-app.mount("/docs/", StaticFiles(directory="./docusaurus/build", html=True), name="static")
+    return RedirectResponse(url="/docs")
 
 @router.get("/feed",tags=["Feed"])
 async def get_feed(channel_id: str, page: int = 1, per_page: int = 10):
