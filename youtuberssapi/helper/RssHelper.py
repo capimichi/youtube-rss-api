@@ -81,10 +81,12 @@ class RssHelper:
 
         return ET.tostring(root)
 
-    def get_podcast_content(self, channel_id):
+    def get_podcast_content(self, channel_id, channel_data):
+
+        title = channel_data['title']
         podcast_content = f"""<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:spotify="https://www.spotify.com/ns/rss" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
         <channel>
-        <title>Otto e mezzo </title>
+        <title>{title}</title>
         <link>https://www.la7.it/otto-e-mezzo</link>
         <language>it</language>
         <copyright>© la7</copyright>
