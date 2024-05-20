@@ -14,11 +14,12 @@ from fastapi.staticfiles import StaticFiles
 from youtuberssapi.service.VideoService import VideoService
 
 default_container = DefaultContainer()
+
 app = FastAPI(docs_url="/swagger", servers=[{"url": default_container.get_base_url()}])
 router = APIRouter()
 
 
-app.mount("/", StaticFiles(directory="docusaurus/build"), name="static")
+app.mount("/", StaticFiles(directory="./docusaurus/build", html=True), name="static")
 
 @router.get("/feed",tags=["Feed"])
 async def get_feed(channel_id: str, page: int = 1, per_page: int = 10):
