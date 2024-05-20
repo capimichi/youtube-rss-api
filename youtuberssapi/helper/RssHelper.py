@@ -1,4 +1,5 @@
 import xml.etree.cElementTree as ET
+import cgi
 
 class RssHelper:
 
@@ -81,11 +82,45 @@ class RssHelper:
 
         return ET.tostring(root)
 
-    def get_podcast_content(self, channel_id, channel_data):
+    def get_podcast_content(self, channel_id, channel_data, videos):
+
+        items = ""
+        for video in videos:
+            title = video['snippet']['title']
+            title = cgi.escape(title)
+            thumbnail = video['snippet']['thumbnails']['medium']['url']
+            item = f"""<item>
+        <guid isPermaLink="false">1988158226</guid>
+        <title>{title}</title>
+        <itunes:title>{title}</itunes:title>
+        <description>
+        <![CDATA[ {title} ]]>
+        </description>
+        <itunes:summary>
+        <![CDATA[ {title} ]]>
+        </itunes:summary>
+        <itunes:author>la7</itunes:author>
+        <itunes:image href="{thumbnail}"/>
+        <media:content url="{thumbnail}" type="image/jpeg"/>
+        <category>News</category>
+        <itunes:category text="News"/>
+        <category>Society &amp; Culture</category>
+        <itunes:category text="Society &amp; Culture"/>
+        <itunes:keywords>News Society &amp; Culture</itunes:keywords>
+        <enclosure url="https://limone.iltrovatore.it/audio.mp3?source_r=itunes&amp;fn=podcast-otto-e-mezzo-474513.mp3&amp;mp3l=1979&amp;mp3pid=otto-e-mezzo" type="audio/mpeg"/>
+        <media:content url="https://limone.iltrovatore.it/audio.mp3?source_r=itunes&amp;fn=podcast-otto-e-mezzo-474513.mp3&amp;mp3l=1979&amp;mp3pid=otto-e-mezzo" type="audio/mpeg">
+        <media:player url="https://www.la7.it/embed/podcas/474513"/>
+        </media:content>
+        <itunes:duration>1979</itunes:duration>
+        <pubDate>Fri, 03 Mar 2023 20:33:30 +0100</pubDate>
+        <itunes:explicit>no</itunes:explicit>
+        </item>"""
+            items += item
 
         title = channel_data['title']
         link = "https://www.youtube.com/" + channel_data['customUrl']
         thumbnail = channel_data['thumbnails']['medium']['url']
+
         podcast_content = f"""<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:spotify="https://www.spotify.com/ns/rss" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
         <channel>
         <title>{title}</title>
@@ -103,42 +138,17 @@ class RssHelper:
         <itunes:image href="{thumbnail}"/>
         <image>
         <url>{thumbnail}</url>
-        <title>Otto e mezzo </title>
-        <link>https://www.la7.it/otto-e-mezzo</link>
+        <title>{title}</title>
+        <link>{link}</link>
         </image>
         <itunes:owner>
-        <itunes:name>la7</itunes:name>
-        <itunes:email>podcast@la7.it</itunes:email>
+        <itunes:name>youtube</itunes:name>
+        <itunes:email>info@youtube.com</itunes:email>
         </itunes:owner>
         <itunes:category text="Society &amp; Culture"/>
         <itunes:category text="News"/>
         <itunes:explicit>no</itunes:explicit>
-        <item>
-        <guid isPermaLink="false">1988158226</guid>
-        <title>Otto e Mezzo</title>
-        <itunes:title>Otto e Mezzo</itunes:title>
-        <description>
-        <![CDATA[ Ospiti di Lilli Gruber: Franco Bernab#xE8;, Massimo Giannini, Lucio Caracciolo, Nadia Urbinati ]]>
-        </description>
-        <itunes:summary>
-        <![CDATA[ Ospiti di Lilli Gruber: Franco Bernab#xE8;, Massimo Giannini, Lucio Caracciolo, Nadia Urbinati ]]>
-        </itunes:summary>
-        <itunes:author>la7</itunes:author>
-        <itunes:image href="https://www.la7.it/sites/default/files/8emezzo_podcast_cover_0.jpg"/>
-        <media:content url="https://www.la7.it/sites/default/files/8emezzo_podcast_cover_0.jpg" type="image/jpeg"/>
-        <category>News</category>
-        <itunes:category text="News"/>
-        <category>Society  Culture</category>
-        <itunes:category text="Society Culture"/>
-        <itunes:keywords>News Society  Culture</itunes:keywords>
-        <enclosure url="https://limone.iltrovatore.it/audio.mp3?source_r=itunes&amp;fn=podcast-otto-e-mezzo-474513.mp3&amp;mp3l=1979&amp;mp3pid=otto-e-mezzo" length="1979" type="audio/mpeg"/>
-        <media:content url="https://limone.iltrovatore.it/audio.mp3?source_r=itunes&amp;fn=podcast-otto-e-mezzo-474513.mp3&amp;mp3l=1979&amp;mp3pid=otto-e-mezzo" type="audio/mpeg">
-        <media:player url="https://www.la7.it/embed/podcas/474513"/>
-        </media:content>
-        <itunes:duration>1979</itunes:duration>
-        <pubDate>Fri, 03 Mar 2023 20:33:30 +0100</pubDate>
-        <itunes:explicit>no</itunes:explicit>
-        </item>
+        {items}
         </channel>
         </rss>"""
 
