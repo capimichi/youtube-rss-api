@@ -6,9 +6,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "You Tube Rss API",
-  tagline: "A simple API to get RSS feeds from YouTube channels",
-  url: "http://dev1.michelecapicchioni.com:8231/",
+  title: "Youtube rss API",
+  tagline: "Youtube rss API is a simple API to get the rss feed of a youtube channel",
+  url: "https://youtube-rss-api.michelecapicchioni.com/",
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
@@ -28,17 +28,8 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -56,23 +47,32 @@ const config = {
         },
       },
       navbar: {
-        title: "You Tube Rss API",
+        title: "Youtube rss API",
         logo: {
-          alt: "You Tube Rss API Logo",
+          alt: "Youtube rss API Logo",
           src: "img/logo.png",
         },
         items: [
           {
-            type: "doc",
-            docId: "intro",
-            position: "left",
-            label: "Tutorial",
-          },
-          {
-            label: "YouTube RSS API",
+            label: "Youtube rss API",
             position: "left",
             to: "/docs/category/youtube-rss-api",
-          }
+          },
+          {
+            label: "Swagger",
+            position: "left",
+            to: "https://youtube-rss-api.michelecapicchioni.com/swagger",
+          },
+          {
+            label: "OpenApi",
+            position: "left",
+            to: "https://youtube-rss-api.michelecapicchioni.com/openapi.json",
+          },
+          {
+            href: "https://github.com/capimichi/youtube-rss-api",
+            label: "GitHub",
+            position: "right",
+          },
         ],
       },
       footer: {
@@ -88,16 +88,37 @@ const config = {
             ],
           },
           {
+            title: "Community",
+            items: [
+              {
+                label: "Stack Overflow",
+                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+              },
+              {
+                label: "Discord",
+                href: "https://discordapp.com/invite/docusaurus",
+              },
+              {
+                label: "Twitter",
+                href: "https://twitter.com/docusaurus",
+              },
+            ],
+          },
+          {
             title: "More",
             items: [
               {
+                label: "Blog",
+                to: "/blog",
+              },
+              {
                 label: "GitHub",
-                href: "https://github.com/capimichi/youtube-rss-api",
+                href: "https://github.com/facebook/docusaurus",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Capimichi`,
+        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -114,10 +135,10 @@ const config = {
         docsPluginId: "classic",
         config: {
           petstore: {
-            specPath: "http://dev1.michelecapicchioni.com:8231/openapi.json",
+            specPath: "examples/youtube-rss-api.json",
             outputDir: "docs/youtube-rss-api",
-            downloadUrl:
-              "http://dev1.michelecapicchioni.com:8231/openapi.json",
+            // downloadUrl:
+            //   "https://raw.githubusercontent.com/PaloAltoNetworks/docusaurus-template-openapi-docs/main/examples/petstore.yaml",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",
