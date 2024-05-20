@@ -1,7 +1,12 @@
 import xml.etree.cElementTree as ET
 from datetime import datetime
 
+
 class RssHelper:
+    base_url = None
+
+    def __init__(self, base_url):
+        self.base_url = base_url
 
     def rss_to_xml(self, rss):
 
@@ -84,6 +89,11 @@ class RssHelper:
 
     def get_podcast_content(self, channel_id, channel_data, videos):
 
+        base_url = self.base_url
+        #rtrim / from base_url
+        if base_url.endswith('/'):
+            base_url = base_url[:-1]
+
         items = ""
         for video in videos:
             title = video['snippet']['title']
@@ -95,7 +105,7 @@ class RssHelper:
             # Formatta l'oggetto datetime nel formato desiderato
             pub_date_final = pub_date_parse.strftime("%a, %d %b %Y %H:%M:%S %z")
 
-            media_url = "http://dev1.michelecapicchioni.com:8231/api/video/" + video['id']['videoId']
+            media_url = base_url + "/api/video/" + video['id']['videoId']
             item = f"""<item>
         <guid isPermaLink="false">1988158226</guid>
         <title>{title}</title>
