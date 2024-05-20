@@ -18,13 +18,13 @@ const sidebars = {
   openApiSidebar: [
     {
       type: "category",
-      label: "Petstore",
+      label: "Youtube rss API",
       link: {
         type: "generated-index",
-        title: "Petstore API",
+        title: "Youtube rss API",
         description:
-          "This is a sample server Petstore server. You can find out more about Swagger at http://swagger.io or on irc.freenode.net, #swagger. For this sample, you can use the api key special-key to test the authorization filters.",
-        slug: "/category/petstore-api"
+          "Youtube rss API is a simple API to get the rss feed of a youtube channel",
+        slug: "/category/youtube-rss-api"
       },
       // @ts-ignore
       items: require("./docs/youtube-rss-api/sidebar.js")
