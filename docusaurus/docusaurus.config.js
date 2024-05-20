@@ -9,7 +9,7 @@ const config = {
   title: "Youtube rss API",
   tagline: "Youtube rss API is a simple API to get the rss feed of a youtube channel",
   url: "https://youtube-rss-api.michelecapicchioni.com/",
-  baseUrl: "/",
+  baseUrl: "/docs/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
