@@ -84,23 +84,25 @@ class RssHelper:
     def get_podcast_content(self, channel_id, channel_data):
 
         title = channel_data['title']
+        link = "https://www.youtube.com/" + channel_data['customUrl']
+        thumbnail = channel_data['thumbnails']['medium']['url']
         podcast_content = f"""<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:spotify="https://www.spotify.com/ns/rss" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
         <channel>
         <title>{title}</title>
-        <link>https://www.la7.it/otto-e-mezzo</link>
+        <link>{link}</link>
         <language>it</language>
-        <copyright>© la7</copyright>
+        <copyright>youtube</copyright>
         <itunes:subtitle/>
-        <itunes:author>la7</itunes:author>
+        <itunes:author>youtube</itunes:author>
         <itunes:summary>
-        <![CDATA[ Ascolta il racconto dell'attualit&#xE0; con Lilli Gruber e i suoi ospiti. Tutti i giorni le puntate integrali di Otto e Mezzo. ]]>
+        <![CDATA[ {title} ]]>
         </itunes:summary>
         <description>
-        <![CDATA[ Ascolta il racconto dell'attualit&#xE0; con Lilli Gruber e i suoi ospiti. Tutti i giorni le puntate integrali di Otto e Mezzo. ]]>
+        <![CDATA[ {title} ]]>
         </description>
-        <itunes:image href="https://www.la7.it/sites/default/files/8emezzo_podcast_cover_0.jpg"/>
+        <itunes:image href="{thumbnail}"/>
         <image>
-        <url>https://www.la7.it/sites/default/files/8emezzo_podcast_cover_0.jpg</url>
+        <url>{thumbnail}</url>
         <title>Otto e mezzo </title>
         <link>https://www.la7.it/otto-e-mezzo</link>
         </image>
