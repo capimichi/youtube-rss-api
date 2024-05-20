@@ -1,1 +1,0 @@
-module.exports = [{"type":"doc","id":"youtube-rss-api/fastapi"},{"type":"category","label":"Feed","items":[{"type":"doc","id":"youtube-rss-api/get-feed-api-feed-get","label":"Get Feed","className":"api-method get"}]},{"type":"category","label":"Video","items":[{"type":"doc","id":"youtube-rss-api/get-video-api-video-id-get","label":"Get Video","className":"api-method get"}]}];
